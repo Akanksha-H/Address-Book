@@ -24,6 +24,11 @@ public class AddressBookUser1 {
                 AddressBookUser1 editContact = new AddressBookUser1();
                 editContact.editContact();
                 break;
+
+            case DELETE_CONTACT:
+                AddressBookUser1 deleteContact = new AddressBookUser1();
+                deleteContact.deleteContact();
+                break;
         }
     }
 
@@ -98,5 +103,19 @@ public class AddressBookUser1 {
 
         System.out.print("Enter new mobile number: ");
         contactInfo.setNumber(scanner.nextLong());
+    }
+
+    void deleteContact(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Name the contact you want to delete = ");
+        String firstName1 = scanner.next();
+        for (int i = 1; i < infoArrayList.size(); i++) {
+            if (firstName1.equals(infoArrayList.get(i).getFirstName())) {
+                infoArrayList.remove(infoArrayList.get(i));
+                System.out.println("Contact deleted");
+            } else {
+                System.out.println("Put valid data");
+            }
+        }
     }
 }
