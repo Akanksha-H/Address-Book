@@ -1,40 +1,18 @@
-package AddressBook1;
+package address_book;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AddressBookUser1 {
-    static final int ADD_CONTACT = 1;
-    static final int EDIT_CONTACT = 2;
-    static final int DELETE_CONTACT = 3;
+public class AddressBookUser {
+    static final int EDIT_CONTACT = 1;
+    static final int DELETE_CONTACT = 2;
     static ArrayList<UserContactInfo> infoArrayList = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println("WELCOME TO ADDRESS_BOOK");
         Scanner scanner = new Scanner(System.in);
-        int option = scanner.nextInt();
 
-        switch (option) {
-            case ADD_CONTACT:
-                AddressBookUser1 addContact = new AddressBookUser1();
-                addContact.addContact();
-                break;
-
-            case EDIT_CONTACT:
-                AddressBookUser1 editContact = new AddressBookUser1();
-                editContact.editContact();
-                break;
-
-            case DELETE_CONTACT:
-                AddressBookUser1 deleteContact = new AddressBookUser1();
-                deleteContact.deleteContact();
-                break;
-        }
-    }
-
-    void addContact() {
         UserContactInfo user1 = new UserContactInfo();
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter name: ");
         user1.setFirstName(scanner.next());
 
@@ -65,6 +43,21 @@ public class AddressBookUser1 {
                 + user1.getEmail() + "\n" + "Number = " + user1.getNumber());
 
         infoArrayList.add(user1);
+
+        System.out.println("Enter the choice 1: Edit Contact 2: Delete Contact");
+        int option = scanner.nextInt();
+
+        switch (option) {
+            case EDIT_CONTACT:
+                AddressBookUser editContact = new AddressBookUser();
+                editContact.editContact();
+                break;
+
+            case DELETE_CONTACT:
+                AddressBookUser deleteContact = new AddressBookUser();
+                deleteContact.deleteContact();
+                break;
+        }
     }
 
     void editContact(){
@@ -109,7 +102,7 @@ public class AddressBookUser1 {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Name the contact you want to delete = ");
         String firstName1 = scanner.next();
-        for (int i = 1; i < infoArrayList.size(); i++) {
+        for (int i = 0; i < infoArrayList.size(); i++) {
             if (firstName1.equals(infoArrayList.get(i).getFirstName())) {
                 infoArrayList.remove(infoArrayList.get(i));
                 System.out.println("Contact deleted");
