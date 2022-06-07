@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AddressBookUser {
     static ArrayList<UserContactInformation> infoArrayList = new ArrayList<>();
-
+    static final int EDIT_CONTACT = 1;
 
     public static void main(String[] args) {
         System.out.println("WELCOME TO ADDRESS_BOOK");
@@ -43,5 +43,52 @@ public class AddressBookUser {
                 + user1.getZip() + "\n" + "Number = " + user1.getNumber());
 
         infoArrayList.add(user1);
+
+        System.out.println("Enter the choice 1: Edit Contact 2: Delete Contact");
+        int option = scanner.nextInt();
+
+        switch (option) {
+            case EDIT_CONTACT:
+                AddressBookUser editContact = new AddressBookUser();
+                editContact.editContact();
+                break;
+        }
+    }
+    void editContact() {
+        UserContactInformation contactInfo = new UserContactInformation();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter name  : ");
+        String firstName = scanner.next();
+
+        for (int i = 0; i < infoArrayList.size(); i++) {
+            if (firstName.equals(infoArrayList.get(i).getFirstName())) {
+                contactInfo = infoArrayList.get(i);
+            } else {
+                System.out.println("Put valid data");
+            }
+        }
+        System.out.print("Enter new name: ");
+        contactInfo.setFirstName(scanner.next());
+
+        System.out.print("Enter new last name: ");
+        contactInfo.setLastName(scanner.next());
+
+        System.out.print("Enter new  locality name: ");
+        contactInfo.setLocality(scanner.next());
+
+        System.out.print("Enter new city name: ");
+        contactInfo.setCity(scanner.next());
+
+        System.out.print("Enter new state name: ");
+        contactInfo.setState(scanner.next());
+
+        System.out.print("Enter new email: ");
+        contactInfo.setEmail(scanner.next());
+
+        System.out.print("Enter new zip: ");
+        contactInfo.setZip(scanner.nextInt());
+
+        System.out.print("Enter new mobile number: ");
+        contactInfo.setNumber(scanner.nextLong());
     }
 }
